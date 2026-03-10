@@ -11,9 +11,7 @@ class HomeScreen extends StatelessWidget {
       /*appBar: AppBar(
         title: Text("Home Screen"),
       ),*/
-      body: Center(
-        child: Text( Environment.themovieDbKey ),
-      ),
+      body: Placeholder()
     );
   }
 }
