@@ -43,7 +43,10 @@ class _HomeViewState extends ConsumerState<_HomeView> {
       children: [
 
         CustomAppbar(),
-        Expanded(
+        MoviesSlideshow(
+          movies: nowPlayingMovies
+        )
+        /*Expanded(
           child: ListView.builder(
             itemCount: nowPlayingMovies.length,
             itemBuilder: (context, index) {
@@ -53,7 +56,7 @@ class _HomeViewState extends ConsumerState<_HomeView> {
               );
             },
           ),
-        )
+        )*/
       ],
     );
   }
