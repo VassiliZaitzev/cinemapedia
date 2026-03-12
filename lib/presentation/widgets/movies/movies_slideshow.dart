@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class MoviesSlideshow extends StatelessWidget {
   final List<Movie> movies;
-  MoviesSlideshow({
+  const MoviesSlideshow({
     required this.movies,
     super.key
   });
