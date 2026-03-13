@@ -13,7 +13,8 @@ class HomeScreen extends StatelessWidget {
       /*appBar: AppBar(
         title: Text("Home Screen"),
       ),*/
-      body: _HomeView()
+      body: _HomeView(),
+      bottomNavigationBar: CustomButtonNavigation()
     );
   }
 }
