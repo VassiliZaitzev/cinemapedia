@@ -1,3 +1,4 @@
+import 'package:cinemapedia/presentation/providers/movies/initial_loading_provider.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -38,12 +39,19 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);
+    final initalLoading = ref.watch(initialLoagingProvider);
+    if (initalLoading) return const FullScreenLoader();
+
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
+
+
+    final nowPlayingMovies = ref.watch(nowPlayingMoviesProvider);    
     final popularMovies = ref.watch(pupularMoviesProvider);
     final topRatedMovies = ref.watch(topRatedMoviesProvider);
     final upcomingMovies = ref.watch(upcomingMoviesProvider);
-    if (nowPlayingMovies.isEmpty) return Center(child: CircularProgressIndicator());
+
+
+    
     
     return CustomScrollView(      
       slivers: [
