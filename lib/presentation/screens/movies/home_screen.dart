@@ -40,32 +40,75 @@ class _HomeViewState extends ConsumerState<_HomeView> {
 
     if (nowPlayingMovies.isEmpty) return Center(child: CircularProgressIndicator());
     
-    return Column(
-      children: [
-
-        CustomAppbar(),
-        MoviesSlideshow(
-          movies: slideShowMovies
+    return CustomScrollView(      
+      slivers: [
+        SliverAppBar(
+          floating: true,
+          flexibleSpace: FlexibleSpaceBar(
+            titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+            title: CustomAppbar(),
+          ),
         ),
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (context, index) {
+              return Column(
+                children: [
+              
+                  
+                  MoviesSlideshow(
+                    movies: slideShowMovies
+                  ),
+              
+                  MovieHorizontalListview(
+                    movies: nowPlayingMovies,
+                    title: "En cines",
+                    subtitle: "Lunes 20",
+                    loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                  ),
+              
+              
+                  MovieHorizontalListview(
+                    movies: nowPlayingMovies,
+                    title: "Próximamente",
+                    subtitle: "En este mes",
+                    loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                  ),
+              
+                  MovieHorizontalListview(
+                    movies: nowPlayingMovies,
+                    title: "Populares",
+                    subtitle: "",
+                    loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                  ),
+              
+                  MovieHorizontalListview(
+                    movies: nowPlayingMovies,
+                    title: "Mejor calificadas",
+                    subtitle: "Desde siempre",
+                    loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
+                  ),
 
-        MovieHorizontalListview(
-          movies: nowPlayingMovies,
-          title: "En cines",
-          subtitle: "Lunes 20",
-          loadNextPage: () => ref.read(nowPlayingMoviesProvider.notifier).loadNextPage(),
-        )
-        /*Expanded(
-          child: ListView.builder(
-            itemCount: nowPlayingMovies.length,
-            itemBuilder: (context, index) {
-              final movie = nowPlayingMovies[index];
-              return ListTile(
-                title: Text(movie.title),
+
+                  SizedBox(height: 50,)
+                  /*Expanded(
+                    child: ListView.builder(
+                      itemCount: nowPlayingMovies.length,
+                      itemBuilder: (context, index) {
+                        final movie = nowPlayingMovies[index];
+                        return ListTile(
+                          title: Text(movie.title),
+                        );
+                      },
+                    ),
+                  )*/
+                ],
               );
             },
-          ),
-        )*/
-      ],
+          )
+        )
+      ]
+      
     );
   }
 }
